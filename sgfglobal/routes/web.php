@@ -25,3 +25,13 @@ require __DIR__.'/auth.php';
 
 Route::resource('/articles','App\Http\Controllers\ArticleController');
 Route::resource('/categories','App\Http\Controllers\CategoryController');
+
+
+//realizacion de middleware
+Route::get('dataAllArticles', function() {
+    return redirect('api/articles');
+})->middleware('header');
+
+Route::get('notAuthorized', function(){
+    return "Usuario no posee permiso para ingresar a esta ruta";
+}); 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Category;
+use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/categores', function(){
-    return Category::all();
+Route::get('/articles', function(){
+    return Article::all();
 });
