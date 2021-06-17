@@ -1,4 +1,4 @@
-@extends('layouts.baseTemplate');
+@extends('dashboard')
 
 @section('contents')
     <h1> Crear Editar Articulo</h1>
