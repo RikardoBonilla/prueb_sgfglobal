@@ -1,7 +1,7 @@
 @extends('layouts.baseTemplate');
 
 @section('contents')
-    <h1> Crear Nueva Categoria</h1>
+    <h1> Crear Editar Categoria</h1>
     <form action="/categories/{{$category->id}}" method="POST">
         @csrf
         @method('PUT')

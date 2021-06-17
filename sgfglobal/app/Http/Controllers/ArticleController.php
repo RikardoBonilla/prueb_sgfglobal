@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -15,8 +16,8 @@ class ArticleController extends Controller
     public function index()
     {
         //all articles are extracted from the database and assigned to the variable $articles
-        $articles =  Article::all();
-        return view('artcle.index')->with('articles',$articles);
+        $articles = DB::select('call total_articles()');
+        return view('article.index')->with('articles',$articles);
     }
 
     /**
@@ -27,6 +28,7 @@ class ArticleController extends Controller
     public function create()
     {
         //
+        return view('article.create');
     }
 
     /**
@@ -38,6 +40,15 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         //
+        //$date = new DateTime();
+        $article = DB::select('call save_articles( ?, ?, ?, ?, ?)', array(
+            $request->get('code')
+            , $request->get('category_id')
+            , $request->get('description')
+            , $request->get('amount')
+            , $request->get('price')
+        ));                             
+        return redirect('articles');
     }
 
     /**
@@ -60,6 +71,8 @@ class ArticleController extends Controller
     public function edit($id)
     {
         //
+        $article =  Article::find($id);
+        return view('article.edit')->with('article',$article);
     }
 
     /**
@@ -72,6 +85,15 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $article = DB::select('call update_articles( ?, ?, ?, ?, ?, ?)', array(
+            $id
+            , $request->get('code')
+            , $request->get('category_id')
+            , $request->get('description')
+            , $request->get('amount')
+            , $request->get('price')
+        ));                             
+        return redirect('articles');
     }
 
     /**
@@ -83,5 +105,7 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         //
+        $article =  DB::select('call delete_articles( ? )', array($id));
+        return redirect('articles');
     }
 }
