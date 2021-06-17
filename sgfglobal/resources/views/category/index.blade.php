@@ -1,6 +1,7 @@
-@extends('layouts.baseTemplate');
+@extends('dashboard')
 
 @section('contents')
+    <h1 class="card-title"> Categorias </h1>
     <a href="categories/create" class="btn btn-primary"> Crear </a>
     <table class="table table-striped">
         <thead>
