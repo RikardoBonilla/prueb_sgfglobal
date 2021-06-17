@@ -3,6 +3,7 @@
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EndpointArticlesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/articles', function(){
     return Article::all();
 });
+
+//endpoints Articles
+Route::get('/endpointArticles', [EndpointArticlesController::class, 'index']);
+Route::get('/endpointArticles/{id}', [EndpointArticlesController::class, 'show']);
+Route::post('/endpointArticles', [EndpointArticlesController::class, 'store']);
+Route::put('/endpointArticles/{id}', [EndpointArticlesController::class, 'update']);
+Route::delete('/endpointArticles/{id}', [EndpointArticlesController::class, 'destroy']);

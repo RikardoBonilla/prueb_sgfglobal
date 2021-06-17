@@ -1,4 +1,4 @@
-@extends('layouts.baseTemplate');
+@extends('dashboard')
 
 @section('contents')
     <a href="articles/create" class="btn btn-primary"> Crear </a>
