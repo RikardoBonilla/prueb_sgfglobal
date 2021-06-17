@@ -16,8 +16,12 @@
                     <td> {{ $category->id }} </td>
                     <td> {{ $category->description }} </td>
                     <td>
-                        <a class="btn btn-info" href="#"> Editar </a>
-                        <button class="btn btn-danger"> Borrar </button>
+                        <form action=" {{ route('categories.destroy', $category->id ) }}" method="POST">
+                            <a class="btn btn-info" href="/categories/{{$category->id}}/edit"> Editar </a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger"> Borrar </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
