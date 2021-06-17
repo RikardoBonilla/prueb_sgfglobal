@@ -14,7 +14,7 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        Category::truncate();
+        //Category::truncate();
         
         $categories = array('Alimentos', 'Snacks', 'Farmapet', 'Cuidado e Higiene', 'Juguetes' ,'Accesorios');
         foreach($categories as $category){

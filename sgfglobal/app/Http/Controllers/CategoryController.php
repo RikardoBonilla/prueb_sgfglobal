@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -13,7 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        //all articles are extracted from the database and assigned to the variable $articles
+        $categories =  Category::all();
+        return view('category.index')->with('categories',$categories);
+        
     }
 
     /**
@@ -24,6 +28,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        return view('category.create');
     }
 
     /**
@@ -35,6 +40,12 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $categories = new Category();
+        $categories->description = $request->get('description');
+        
+        $categories->save();
+
+        return redirect('categories');
     }
 
     /**

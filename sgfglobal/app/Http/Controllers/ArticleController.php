@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -13,7 +14,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        //all articles are extracted from the database and assigned to the variable $articles
+        $articles =  Article::all();
+        return view('artcle.index')->with('articles',$articles);
     }
 
     /**
