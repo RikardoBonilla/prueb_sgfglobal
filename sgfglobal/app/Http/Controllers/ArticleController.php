@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +18,9 @@ class ArticleController extends Controller
     {
         //all articles are extracted from the database and assigned to the variable $articles
         $articles = DB::select('call total_articles()');
-        return view('article.index')->with('articles',$articles);
+        
+        return view('article.index')->with('articles', $articles);
+        // return view('article.index')->with('articles',$articles);
     }
 
     /**
@@ -28,7 +31,8 @@ class ArticleController extends Controller
     public function create()
     {
         //
-        return view('article.create');
+        $categories = Category::all();
+        return view('article.create')->with('categories',$categories);
     }
 
     /**
@@ -72,7 +76,8 @@ class ArticleController extends Controller
     {
         //
         $article =  Article::find($id);
-        return view('article.edit')->with('article',$article);
+        $categories = Category::all();
+        return view('article.edit')->with(['article'=>$article, 'categories'=>$categories]);
     }
 
     /**
