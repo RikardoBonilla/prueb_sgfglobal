@@ -11,7 +11,12 @@
         </div>
         <div class="mb-3">
             <label for="" class="form.label"> Categoria</label>
-            <input type="number" id="category_id" name="category_id" class="form-control" tabindex="2" value="{{ $article->category_id }}">
+            <select name="category_id" id="category_id" class="form-select" aria-label="Default select example" required>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}"> {{ $category->description }}</option>
+                @endforeach
+            </select>
+            {{-- <input type="number" id="category_id" name="category_id" class="form-control" tabindex="2" value="{{ $article->category_id }}"> --}}
         </div>
         <div class="mb-3">
             <label for="" class="form.label"> Descripcion</label>
